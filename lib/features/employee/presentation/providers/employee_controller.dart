@@ -8,6 +8,7 @@ import '../../domain/usecases/get_employees_usecase.dart';
 import '../../domain/usecases/update_employee_usecase.dart';
 import 'employee_providers.dart';
 import 'employee_state.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class EmployeeController extends Notifier<EmployeeState> {
   late final GetEmployeesUseCase _getEmployeesUseCase;
@@ -64,7 +65,7 @@ class EmployeeController extends Notifier<EmployeeState> {
 
       state = state.copyWith(
         isLoading: false,
-        message: 'Employee added successfully',
+        message: AppStrings.employeeAddedSuccess,
       );
     } catch (_) {
       state = state.copyWith(
@@ -86,7 +87,7 @@ class EmployeeController extends Notifier<EmployeeState> {
 
       state = state.copyWith(
         isLoading: false,
-        message: 'Employee updated successfully',
+        message: AppStrings.employeeUpdatedSuccess,
       );
     } catch (_) {
       state = state.copyWith(
@@ -108,7 +109,7 @@ class EmployeeController extends Notifier<EmployeeState> {
 
       state = state.copyWith(
         isLoading: false,
-        message: 'Employee deleted successfully',
+        message: AppStrings.employeeDeletedSuccess,
       );
     } catch (_) {
       state = state.copyWith(

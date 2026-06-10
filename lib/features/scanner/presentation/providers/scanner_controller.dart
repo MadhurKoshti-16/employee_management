@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../employee/domain/entities/employee.dart';
 import 'scanner_state.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class ScannerController extends Notifier<ScannerState> {
   final ImagePicker _picker = ImagePicker();
@@ -101,11 +102,11 @@ class ScannerController extends Notifier<ScannerState> {
       name: _extractName(text),
       department: _extractValue(
         text,
-        ['Department', 'Dept'],
+        [AppStrings.department, 'Dept'],
       ),
       designation: _extractValue(
         text,
-        ['Designation', 'Role', 'Position'],
+        [AppStrings.designation, 'Role', 'Position'],
       ),
     );
   }
@@ -138,7 +139,7 @@ class ScannerController extends Notifier<ScannerState> {
   String? _extractName(String text) {
     return _extractValue(
       text,
-      ['Name', 'Employee Name'],
+      [AppStrings.name, 'Employee Name'],
     );
   }
 

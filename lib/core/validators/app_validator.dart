@@ -1,14 +1,15 @@
+import 'package:employee_onboarding_app/config/app_strings.dart';
 class AppValidator {
   static final _phoneRegex = RegExp(r'^\d{10}$');
   static final _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   static String? email(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Email is required';
+      return AppStrings.emailRequired;
     }
 
     if (!_emailRegex.hasMatch(value.trim())) {
-      return 'Enter valid email';
+      return AppStrings.enterValidEmail;
     }
 
     return null;
@@ -16,11 +17,11 @@ class AppValidator {
 
   static String? password(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return AppStrings.passwordRequired;
     }
 
     if (value.length < 6) {
-      return 'Minimum 6 characters';
+      return AppStrings.min6Chars;
     }
 
     return null;
@@ -31,7 +32,7 @@ class AppValidator {
     required String? value,
   }) {
     if (value != password) {
-      return 'Password does not match';
+      return AppStrings.passwordNotMatch;
     }
 
     return null;
@@ -39,11 +40,11 @@ class AppValidator {
 
   static String? phone(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Phone Number is required';
+      return AppStrings.phoneRequired;
     }
 
     if (!_phoneRegex.hasMatch(value.trim())) {
-      return 'Enter valid Phone Number';
+      return AppStrings.enterValidPhone;
     }
 
     return null;

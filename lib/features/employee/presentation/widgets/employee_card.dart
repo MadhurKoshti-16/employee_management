@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/employee.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class EmployeeCard extends StatelessWidget {
   final Employee employee;
@@ -108,7 +109,7 @@ class EmployeeCard extends StatelessWidget {
                 
                 _InfoRow(
                   icon: Icons.phone,
-                  label: 'Phone',
+                  label: AppStrings.phone,
                   value: employee.phone,
                 ),
                 
@@ -116,7 +117,7 @@ class EmployeeCard extends StatelessWidget {
                   _InfoRow(
                     icon:
                         Icons.badge_outlined,
-                    label: 'Employee ID',
+                    label: AppStrings.employeeId,
                     value:
                         employee.employeeId!,
                   ),
@@ -125,7 +126,7 @@ class EmployeeCard extends StatelessWidget {
                   _InfoRow(
                     icon:
                         Icons.apartment_outlined,
-                    label: 'Department',
+                    label: AppStrings.department,
                     value:
                         employee.department!,
                   ),
@@ -135,7 +136,7 @@ class EmployeeCard extends StatelessWidget {
                   _InfoRow(
                     icon:
                         Icons.work_outline,
-                    label: 'Designation',
+                    label: AppStrings.designation,
                     value:
                         employee.designation!,
                   ),

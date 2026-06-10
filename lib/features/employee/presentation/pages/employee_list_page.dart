@@ -2,11 +2,13 @@ import 'package:employee_onboarding_app/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../auth/presentation/providers/auth_providers.dart';
 import '../../domain/entities/employee.dart';
 import '../providers/employee_providers.dart';
 import '../widgets/employee_card.dart';
 import '../widgets/employee_empty_state.dart';
 import '../widgets/employee_search_bar.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class EmployeeListPage extends ConsumerStatefulWidget {
   const EmployeeListPage({super.key});
@@ -56,22 +58,22 @@ class _EmployeeListPageState extends ConsumerState<EmployeeListPage> {
       context: context,
       builder: (_) {
         return AlertDialog(
-          title: const Text('Delete Employee'),
+          title: const Text(AppStrings.deleteEmployeeTitle),
           content: const Text(
-            'Are you sure you want to delete this employee?',
+            AppStrings.deleteEmployeeConfirmation,
           ),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context, false);
               },
-              child: const Text('Cancel'),
+              child: const Text(AppStrings.cancel),
             ),
             FilledButton(
               onPressed: () {
                 Navigator.pop(context, true);
               },
-              child: const Text('Delete'),
+              child: const Text(AppStrings.delete),
             ),
           ],
         );
@@ -88,7 +90,7 @@ class _EmployeeListPageState extends ConsumerState<EmployeeListPage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Employee deleted successfully'),
+        content: Text(AppStrings.employeeDeletedSuccess),
       ),
     );
   }
@@ -99,13 +101,77 @@ class _EmployeeListPageState extends ConsumerState<EmployeeListPage> {
     final employees = ref.watch(filteredEmployeesProvider);
 
     return Scaffold(
+      // appBar: AppBar(
+      //   title: const Text(AppStrings.employees),
+      // ),
       appBar: AppBar(
-        title: const Text('Employees'),
-      ),
+  title: const Text(AppStrings.employees),
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.logout),
+      onPressed: () async {
+        final shouldLogout =
+            await showDialog<bool>(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: const Text(
+              AppStrings.logout,
+            ),
+            content: const Text(
+              AppStrings.logoutConfirmation,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    false,
+                  );
+                },
+                child: const Text(
+                  AppStrings.cancel,
+                ),
+              ),
+              FilledButton(
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    true,
+                  );
+                },
+                child: const Text(
+                  AppStrings.logout,
+                ),
+              ),
+            ],
+          ),
+        );
+
+        if (shouldLogout != true) {
+          return;
+        }
+
+        await ref
+            .read(
+              authControllerProvider.notifier,
+            )
+            .logout();
+
+        if (!context.mounted) return;
+
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRoutes.login,
+          (route) => false,
+        );
+      },
+    ),
+  ],
+),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _openAddEmployee,
         icon: const Icon(Icons.add),
-        label: const Text('Employee'),
+        label: const Text(AppStrings.employeeFabLabel),
       ),
       body: Column(
         children: [
@@ -122,7 +188,7 @@ class _EmployeeListPageState extends ConsumerState<EmployeeListPage> {
             const Padding(
               padding: EdgeInsets.only(bottom: 8),
               child: Text(
-                'Type at least 3 characters to search',
+                AppStrings.typeAtLeast3Chars,
               ),
             ),
 

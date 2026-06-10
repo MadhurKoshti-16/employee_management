@@ -6,6 +6,7 @@ import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_textfield.dart';
 import '../../../../core/validators/app_validator.dart';
 import '../providers/auth_providers.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
@@ -44,19 +45,19 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 const SizedBox(height: 20),
 
                 const Text(
-                  "Create Account",
+                  AppStrings.createAccount,
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
 
                 const SizedBox(height: 8),
 
-                const Text("Register to continue"),
+                const Text(AppStrings.registerToContinue),
 
                 const SizedBox(height: 30),
 
                 AppTextField(
                   controller: _emailController,
-                  hintText: "Email",
+                  hintText: AppStrings.email,
                   validator: AppValidator.email,
                 ),
 
@@ -64,7 +65,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
                 AppTextField(
                   controller: _passwordController,
-                  hintText: "Password",
+                  hintText: AppStrings.password,
                   obscureText: _hidePassword,
                   validator: AppValidator.password,
                   suffixIcon: IconButton(
@@ -83,7 +84,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
                 AppTextField(
                   controller: _confirmController,
-                  hintText: "Confirm Password",
+                  hintText: AppStrings.confirmPassword,
                   obscureText: _hideConfirm,
                   validator: (value) {
                     return AppValidator.confirmPassword(
@@ -106,7 +107,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 const SizedBox(height: 30),
 
                 AppButton(
-                  title: "Register",
+                  title: AppStrings.register,
                   loading: state.isLoading,
                   onTap: () async {
                     if (!_formKey.currentState!.validate()) {

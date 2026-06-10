@@ -10,6 +10,7 @@ import '../../../../core/widgets/app_textfield.dart';
 import '../../domain/entities/employee.dart';
 import '../providers/employee_form_providers.dart';
 import '../providers/employee_providers.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class EmployeeFormPage extends ConsumerStatefulWidget {
   final Employee? employee;
@@ -191,8 +192,8 @@ class _EmployeeFormPageState extends ConsumerState<EmployeeFormPage> {
         SnackBar(
           content: Text(
             isEdit
-                ? 'Employee updated successfully'
-                : 'Employee added successfully',
+                ? AppStrings.employeeUpdatedSuccess
+                : AppStrings.employeeAddedSuccess,
           ),
         ),
       );
@@ -221,7 +222,7 @@ class _EmployeeFormPageState extends ConsumerState<EmployeeFormPage> {
     final formState = ref.watch(employeeFormControllerProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(isEdit ? 'Edit Employee' : 'Add Employee')),
+      appBar: AppBar(title: Text(isEdit ? AppStrings.editEmployee : AppStrings.addEmployee)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -249,40 +250,40 @@ class _EmployeeFormPageState extends ConsumerState<EmployeeFormPage> {
 
               AppTextField(
                 controller: _employeeIdController,
-                hintText: 'Employee ID',
-                labelText: 'Employee ID',
+                hintText: AppStrings.employeeId,
+                labelText: AppStrings.employeeId,
               ),
 
               const SizedBox(height: 16),
 
               AppTextField(
                 controller: _nameController,
-                hintText: 'Name',
-                labelText: 'Name',
+                hintText: AppStrings.name,
+                labelText: AppStrings.name,
               ),
 
               const SizedBox(height: 16),
 
               AppTextField(
-                labelText: 'Department',
+                labelText: AppStrings.department,
                 controller: _departmentController,
-                hintText: 'Department',
+                hintText: AppStrings.department,
               ),
 
               const SizedBox(height: 16),
 
               AppTextField(
                 controller: _designationController,
-                hintText: 'Designation',
-                labelText: 'Designation',
+                hintText: AppStrings.designation,
+                labelText: AppStrings.designation,
               ),
 
               const SizedBox(height: 16),
 
               AppTextField(
                 controller: _emailController,
-                hintText: 'Email',
-                labelText: 'Email',
+                hintText: AppStrings.email,
+                labelText: AppStrings.email,
                 keyboardType: TextInputType.emailAddress,
                 validator: AppValidator.email,
               ),
@@ -291,8 +292,8 @@ class _EmployeeFormPageState extends ConsumerState<EmployeeFormPage> {
 
               AppTextField(
                 controller: _phoneController,
-                hintText: 'Phone',
-                labelText: 'Phone',
+                hintText: AppStrings.phone,
+                labelText: AppStrings.phone,
                 keyboardType: TextInputType.phone,
                 validator: AppValidator.phone,
               ),
@@ -301,8 +302,8 @@ class _EmployeeFormPageState extends ConsumerState<EmployeeFormPage> {
 
               AppTextField(
                 controller: _joiningDateController,
-                hintText: 'Joining Date',
-                labelText: 'Joining Date',
+                hintText: AppStrings.joiningDate,
+                labelText: AppStrings.joiningDate,
                 readOnly: true,
                 onTap: _selectDate,
                 prefixIcon: const Icon(Icons.calendar_today),
@@ -311,7 +312,7 @@ class _EmployeeFormPageState extends ConsumerState<EmployeeFormPage> {
               const SizedBox(height: 32),
 
               AppButton(
-                title: isEdit ? 'Update Employee' : 'Save Employee',
+                title: isEdit ? AppStrings.updateEmployee : AppStrings.saveEmployee,
                 loading: formState.isLoading,
                 onTap: _save,
               ),

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config/app_routes.dart';
 import '../../domain/entities/employee.dart';
 import '../providers/employee_providers.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class EmployeeViewPage extends ConsumerWidget {
   final Employee employee;
@@ -41,18 +42,18 @@ class EmployeeViewPage extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Delete Employee'),
+        title: const Text(AppStrings.deleteEmployeeTitle),
         content: const Text(
-          'Are you sure you want to delete this employee?',
+          AppStrings.deleteEmployeeConfirmation,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: const Text(AppStrings.cancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: const Text(AppStrings.delete),
           ),
         ],
       ),
@@ -79,7 +80,7 @@ class EmployeeViewPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Employee Details'),
+        title: const Text(AppStrings.employeeDetails),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit_outlined),
@@ -119,14 +120,14 @@ class EmployeeViewPage extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
-          _InfoTile(title: 'Email', value: currentEmployee.email),
-          _InfoTile(title: 'Phone', value: currentEmployee.phone),
-          _InfoTile(title: 'Employee ID', value: currentEmployee.employeeId),
-          _InfoTile(title: 'Name', value: currentEmployee.name),
-          _InfoTile(title: 'Department', value: currentEmployee.department),
-          _InfoTile(title: 'Designation', value: currentEmployee.designation),
+          _InfoTile(title: AppStrings.email, value: currentEmployee.email),
+          _InfoTile(title: AppStrings.phone, value: currentEmployee.phone),
+          _InfoTile(title: AppStrings.employeeId, value: currentEmployee.employeeId),
+          _InfoTile(title: AppStrings.name, value: currentEmployee.name),
+          _InfoTile(title: AppStrings.department, value: currentEmployee.department),
+          _InfoTile(title: AppStrings.designation, value: currentEmployee.designation),
           _InfoTile(
-            title: 'Joining Date',
+            title: AppStrings.joiningDate,
             value: currentEmployee.joiningDate?.toString().split(' ').first,
           ),
         ],

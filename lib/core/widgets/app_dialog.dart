@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class AppDialog {
   static Future<bool?> showDeleteDialog(
@@ -8,21 +9,21 @@ class AppDialog {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text(
-          'Delete Employee',
+          AppStrings.deleteEmployeeTitle,
         ),
         content: const Text(
-          'Are you sure you want to delete this employee?',
+          AppStrings.deleteEmployeeConfirmation,
         ),
         actions: [
           TextButton(
             onPressed: () =>
                 Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: const Text(AppStrings.cancel),
           ),
           FilledButton(
             onPressed: () =>
                 Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: const Text(AppStrings.delete),
           ),
         ],
       ),

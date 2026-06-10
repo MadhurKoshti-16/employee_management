@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config/app_routes.dart';
 import '../providers/scanner_provider.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class ScannerPage extends ConsumerWidget {
   const ScannerPage({super.key});
@@ -19,7 +20,7 @@ class ScannerPage extends ConsumerWidget {
     if (employee == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('No data extracted. You can fill details manually.'),
+          content: Text(AppStrings.noDataExtracted),
         ),
       );
       return;
@@ -28,18 +29,18 @@ class ScannerPage extends ConsumerWidget {
     final goToForm = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Scan Completed'),
+        title: const Text(AppStrings.scanCompleted),
         content: const Text(
-          'Employee details extracted. Do you want to continue to form?',
+          AppStrings.employeeDetailsExtracted,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Scan Again'),
+            child: const Text(AppStrings.scanAgain),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Continue'),
+            child: const Text(AppStrings.continueLabel),
           ),
         ],
       ),
@@ -78,11 +79,11 @@ class ScannerPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Scan Employee Card'),
+        title: const Text(AppStrings.scanEmployeeCard),
         actions: [
           TextButton(
             onPressed: () => _goToManualForm(context, ref),
-            child: const Text('Skip'),
+            child: const Text(AppStrings.skip),
           ),
         ],
       ),
@@ -130,7 +131,7 @@ class ScannerPage extends ConsumerWidget {
                   OutlinedButton.icon(
                     onPressed: () => _goToManualForm(context, ref),
                     icon: const Icon(Icons.edit_note),
-                    label: const Text('Fill Manually'),
+                    label: const Text(AppStrings.fillManually),
                   ),
                 ],
               ),
@@ -152,7 +153,7 @@ class ScannerPage extends ConsumerWidget {
                     );
                   },
                   icon: const Icon(Icons.camera_alt),
-                  label: const Text('Capture from Camera'),
+                  label: const Text(AppStrings.captureFromCamera),
                 ),
               ),
 
@@ -170,7 +171,7 @@ class ScannerPage extends ConsumerWidget {
                     );
                   },
                   icon: const Icon(Icons.photo_library),
-                  label: const Text('Choose from Gallery'),
+                  label: const Text(AppStrings.chooseFromGallery),
                 ),
               ),
 
@@ -179,7 +180,7 @@ class ScannerPage extends ConsumerWidget {
               TextButton.icon(
                 onPressed: () => _goToManualForm(context, ref),
                 icon: const Icon(Icons.edit),
-                label: const Text('Add Manually'),
+                label: const Text(AppStrings.addManually),
               ),
             ],
           ],

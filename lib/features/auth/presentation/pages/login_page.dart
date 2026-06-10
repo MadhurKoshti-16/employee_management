@@ -55,13 +55,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 const SizedBox(height: 32),
 
                 const Text(
-                  "Welcome Back",
+                  AppStrings.welcomeBack,
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
 
                 const SizedBox(height: 8),
 
-                const Text("Login to continue"),
+                const Text(AppStrings.loginToContinue),
 
                 const SizedBox(height: 30),
 
@@ -93,7 +93,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 const SizedBox(height: 30),
 
                 AppButton(
-                  title: "Login",
+                  title: AppStrings.login,
                   loading: state.isLoading,
                   onTap: () async {
                     if (!_formKey.currentState!.validate()) {
@@ -123,13 +123,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have account?"),
+                    const Text(AppStrings.dontHaveAccount),
 
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.register);
                       },
-                      child: const Text("Register"),
+                      child: const Text(AppStrings.register),
                     ),
                   ],
                 ),

@@ -1,4 +1,5 @@
 import '../../domain/entities/extracted_employee.dart';
+import 'package:employee_onboarding_app/config/app_strings.dart';
 
 class ExtractedEmployeeModel extends ExtractedEmployee {
   const ExtractedEmployeeModel({
@@ -32,9 +33,9 @@ class ExtractedEmployeeModel extends ExtractedEmployee {
       employeeId: employeeId,
       email: email,
       phone: phone,
-      name: _extractValue(text, ['Name', 'Employee Name']),
-      department: _extractValue(text, ['Department', 'Dept']),
-      designation: _extractValue(text, ['Designation', 'Role', 'Position']),
+      name: _extractValue(text, [AppStrings.name, 'Employee Name']),
+      department: _extractValue(text, [AppStrings.department, 'Dept']),
+      designation: _extractValue(text, [AppStrings.designation, 'Role', 'Position']),
     );
   }
 
